@@ -62,7 +62,7 @@ export default function Ministries() {
     <div className="min-h-screen bg-gold-100">
       {/* Hero */}
       <section
-        className="relative pt-32 pb-20 px-4 text-center"
+        className="relative pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 text-center"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=1400&h=400&fit=crop&auto=format)',
           backgroundSize: 'cover',
@@ -71,33 +71,37 @@ export default function Ministries() {
       >
         <div className="absolute inset-0 bg-navy-950/88" />
         <div className="relative z-10">
-          <p className="text-gold-400 text-xs font-display tracking-widest uppercase mb-3">Serving Together</p>
-          <h1 className="font-decorative text-3xl md:text-5xl gold-text">Ministries</h1>
-          <div className="section-divider max-w-[100px] mx-auto mt-5" />
+          <p className="text-gold-400 text-xs font-display tracking-widest uppercase mb-2 sm:mb-3">Serving Together</p>
+          <h1 className="font-decorative text-2xl sm:text-4xl md:text-5xl gold-text">Ministries</h1>
+          <div className="section-divider max-w-[80px] sm:max-w-[100px] mx-auto mt-4 sm:mt-5" />
         </div>
       </section>
 
       {/* Intro */}
-      <section className="bg-navy-900 py-12 px-4 text-center">
-        <p className="max-w-2xl mx-auto text-gold-200/70 leading-relaxed">
+      <section className="bg-navy-900 py-8 sm:py-12 px-4 text-center">
+        <p className="max-w-2xl mx-auto text-gold-200/70 text-xs sm:text-sm md:text-base leading-relaxed">
           Every ministry at Faith Believers exists to fulfil one mission: advancing the Kingdom of God. Discover where God is calling you to serve.
         </p>
       </section>
 
       {/* Grid */}
-      <section className="py-14 px-4">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <section className="py-10 sm:py-14 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
           {ministries.map(({ icon, title, desc, img, lead }) => (
-            <div key={title} className="card-navy rounded-sm overflow-hidden group">
-              <div className="relative overflow-hidden">
-                <img src={img} alt={title} className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-navy-950/50" />
-                <div className="absolute top-3 left-3 text-2xl">{icon}</div>
+            <div key={title} className="card-navy rounded-sm overflow-hidden group flex flex-col justify-between">
+              <div>
+                <div className="relative overflow-hidden">
+                  <img src={img} alt={title} className="w-full h-36 sm:h-40 object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-navy-950/50" />
+                  <div className="absolute top-3 left-3 text-2xl">{icon}</div>
+                </div>
+                <div className="p-4 sm:p-5">
+                  <h3 className="font-display text-gold-300 text-sm mb-2 leading-snug">{title}</h3>
+                  <p className="text-gold-200/50 text-xs leading-relaxed mb-3">{desc}</p>
+                </div>
               </div>
-              <div className="p-5">
-                <h3 className="font-display text-gold-300 text-sm mb-2 leading-snug">{title}</h3>
-                <p className="text-gold-200/50 text-xs leading-relaxed mb-3">{desc}</p>
-                <p className="text-gold-500/60 text-[10px] font-display tracking-wider uppercase">{lead}</p>
+              <div className="px-4 sm:px-5 pb-4 sm:pb-5">
+                <p className="text-gold-500/60 text-[10px] font-display tracking-wider uppercase border-t border-gold-800/10 pt-2">{lead}</p>
               </div>
             </div>
           ))}
@@ -105,13 +109,13 @@ export default function Ministries() {
       </section>
 
       {/* Join CTA */}
-      <section className="bg-navy-900 py-14 px-4 text-center border-t border-gold-800/20">
-        <p className="text-gold-400 text-xs font-display tracking-widest uppercase mb-3">Find Your Place</p>
-        <h2 className="font-display text-gold-200 text-2xl mb-4">Get Involved</h2>
-        <p className="text-gold-200/50 max-w-md mx-auto text-sm leading-relaxed mb-8">
+      <section className="bg-navy-900 py-10 sm:py-14 px-4 text-center border-t border-gold-800/20">
+        <p className="text-gold-400 text-xs font-display tracking-widest uppercase mb-2 sm:mb-3">Find Your Place</p>
+        <h2 className="font-display text-gold-200 text-xl sm:text-2xl mb-3 sm:mb-4">Get Involved</h2>
+        <p className="text-gold-200/50 max-w-md mx-auto text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8 px-2">
           Every member of the body has a role to play. Connect with a ministry today and discover the joy of serving God's people.
         </p>
-        <a href="/contact" className="btn-gold px-8 py-3.5 rounded-sm text-sm inline-block">Connect With Us</a>
+        <a href="/contact" className="btn-gold px-8 py-3.5 rounded-sm text-xs sm:text-sm inline-block">Connect With Us</a>
       </section>
     </div>
   );

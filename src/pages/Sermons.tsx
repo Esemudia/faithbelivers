@@ -20,7 +20,7 @@ export default function Sermons() {
     <div className="min-h-screen bg-gold-100">
       {/* Hero */}
       <section
-        className="relative pt-32 pb-20 px-4 text-center"
+        className="relative pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 text-center"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=1400&h=400&fit=crop&auto=format)',
           backgroundSize: 'cover',
@@ -29,22 +29,22 @@ export default function Sermons() {
       >
         <div className="absolute inset-0 bg-navy-950/88" />
         <div className="relative z-10">
-          <p className="text-gold-400 text-xs font-display tracking-widest uppercase mb-3">The Word</p>
-          <h1 className="font-decorative text-3xl md:text-5xl gold-text">Sermons</h1>
-          <div className="section-divider max-w-[100px] mx-auto mt-5" />
+          <p className="text-gold-400 text-xs font-display tracking-widest uppercase mb-2 sm:mb-3">The Word</p>
+          <h1 className="font-decorative text-2xl sm:text-4xl md:text-5xl gold-text">Sermons</h1>
+          <div className="section-divider max-w-[80px] sm:max-w-[100px] mx-auto mt-4 sm:mt-5" />
         </div>
       </section>
 
       {/* Filter */}
-      <section className="bg-navy-900 py-6 px-4 border-b border-gold-800/20">
-        <div className="max-w-5xl mx-auto flex flex-wrap gap-2 justify-center">
+      <section className="bg-navy-900 py-4 sm:py-6 px-3 sm:px-4 border-b border-gold-800/20">
+        <div className="max-w-5xl mx-auto flex flex-wrap gap-1.5 sm:gap-2 justify-center">
           {series.map(s => (
             <button
               key={s}
               onClick={() => setFilter(s)}
-              className={`px-4 py-1.5 text-xs font-display tracking-wider uppercase rounded-sm transition-colors ${
+              className={`px-3 sm:px-4 py-1.5 text-[11px] sm:text-xs font-display tracking-wider uppercase rounded-sm transition-colors ${
                 filter === s
-                  ? 'bg-gold-600 text-navy-950'
+                  ? 'bg-gold-600 text-navy-950 font-semibold shadow-xs'
                   : 'border border-gold-700/40 text-gold-300 hover:border-gold-400 hover:text-gold-200'
               }`}
             >
@@ -55,28 +55,30 @@ export default function Sermons() {
       </section>
 
       {/* Grid */}
-      <section className="py-14 px-4">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="py-10 sm:py-14 px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {filtered.map(sermon => (
-            <div key={sermon.id} className="card-navy rounded-sm overflow-hidden group">
+            <div key={sermon.id} className="card-navy rounded-sm overflow-hidden group flex flex-col">
               <div className="relative overflow-hidden">
                 <img
                   src={sermon.img}
                   alt={sermon.title}
-                  className="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-44 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-navy-950/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="w-14 h-14 rounded-full border-2 border-gold-400 flex items-center justify-center">
+                  <div className="w-12 sm:w-14 h-12 sm:h-14 rounded-full border-2 border-gold-400 flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold-400 ml-1" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z"/>
                     </svg>
                   </div>
                 </div>
               </div>
-              <div className="p-5">
-                <p className="text-gold-500 text-[10px] font-display tracking-widest uppercase mb-1">{sermon.series}</p>
-                <h3 className="font-display text-gold-200 text-sm leading-snug mb-3">{sermon.title}</h3>
-                <div className="flex items-center justify-between text-[11px] text-gold-200/40 font-display">
+              <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <p className="text-gold-500 text-[10px] font-display tracking-widest uppercase mb-1">{sermon.series}</p>
+                  <h3 className="font-display text-gold-200 text-sm leading-snug mb-3">{sermon.title}</h3>
+                </div>
+                <div className="flex items-center justify-between text-[11px] text-gold-200/50 font-display pt-2 border-t border-gold-800/10">
                   <span>{sermon.date}</span>
                   <span>{sermon.duration}</span>
                 </div>

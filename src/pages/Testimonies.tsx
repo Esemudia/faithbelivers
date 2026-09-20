@@ -73,7 +73,7 @@ export default function Testimonies() {
     <div className="min-h-screen bg-gold-100">
       {/* Hero */}
       <section
-        className="relative pt-32 pb-20 px-4 text-center"
+        className="relative pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 text-center"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1551038247-3d935814b8b3?w=1400&h=400&fit=crop&auto=format)',
           backgroundSize: 'cover',
@@ -82,21 +82,21 @@ export default function Testimonies() {
       >
         <div className="absolute inset-0 bg-navy-950/88" />
         <div className="relative z-10">
-          <p className="text-gold-400 text-xs font-display tracking-widest uppercase mb-3">His Faithfulness</p>
-          <h1 className="font-decorative text-3xl md:text-5xl gold-text">Testimonies</h1>
-          <div className="section-divider max-w-[100px] mx-auto mt-5" />
+          <p className="text-gold-400 text-xs font-display tracking-widest uppercase mb-2 sm:mb-3">His Faithfulness</p>
+          <h1 className="font-decorative text-2xl sm:text-4xl md:text-5xl gold-text">Testimonies</h1>
+          <div className="section-divider max-w-[80px] sm:max-w-[100px] mx-auto mt-4 sm:mt-5" />
         </div>
       </section>
 
       {/* Filter */}
-      <section className="bg-navy-900 py-5 px-4 border-b border-gold-800/20">
-        <div className="max-w-5xl mx-auto flex flex-wrap gap-2 justify-center">
+      <section className="bg-navy-900 py-4 sm:py-5 px-3 sm:px-4 border-b border-gold-800/20">
+        <div className="max-w-5xl mx-auto flex flex-wrap gap-1.5 sm:gap-2 justify-center">
           {categories.map(c => (
             <button
               key={c}
               onClick={() => setFilter(c)}
-              className={`px-4 py-1.5 text-xs font-display tracking-wider uppercase rounded-sm transition-colors ${
-                filter === c ? 'bg-gold-600 text-navy-950' : 'border border-gold-700/40 text-gold-300 hover:border-gold-400'
+              className={`px-3 sm:px-4 py-1.5 text-[11px] sm:text-xs font-display tracking-wider uppercase rounded-sm transition-colors ${
+                filter === c ? 'bg-gold-600 text-navy-950 font-semibold shadow-xs' : 'border border-gold-700/40 text-gold-300 hover:border-gold-400'
               }`}
             >
               {c}
@@ -106,15 +106,15 @@ export default function Testimonies() {
       </section>
 
       {/* Grid */}
-      <section className="py-14 px-4">
-        <div className="max-w-5xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
+      <section className="py-10 sm:py-14 px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-5 space-y-4 sm:space-y-5">
           {filtered.map(t => (
-            <div key={t.id} className="card-navy rounded-sm p-6 break-inside-avoid">
-              <span className={`text-[10px] px-2.5 py-0.5 rounded-sm font-display tracking-wider uppercase inline-block mb-3 ${catColors[t.category]}`}>
+            <div key={t.id} className="card-navy rounded-sm p-4 sm:p-6 break-inside-avoid">
+              <span className={`text-[10px] px-2.5 py-0.5 rounded-sm font-display tracking-wider uppercase inline-block mb-2 sm:mb-3 ${catColors[t.category]}`}>
                 {t.category}
               </span>
-              <p className="text-gold-200/70 text-sm leading-relaxed italic mb-5">"{t.text}"</p>
-              <div className="flex items-center justify-between">
+              <p className="text-gold-200/70 text-xs sm:text-sm leading-relaxed italic mb-4 sm:mb-5">"{t.text}"</p>
+              <div className="flex items-center justify-between border-t border-gold-800/10 pt-3">
                 <div>
                   <p className="font-display text-gold-400 text-xs tracking-wide">{t.name}</p>
                   <p className="text-gold-200/30 text-[10px]">{t.location}</p>
@@ -127,20 +127,22 @@ export default function Testimonies() {
       </section>
 
       {/* Share Form */}
-      <section className="bg-navy-900 py-14 px-4">
+      <section className="bg-navy-900 py-12 sm:py-16 px-4 sm:px-6">
         <div className="max-w-xl mx-auto">
-          <div className="text-center mb-8">
+          <div className="text-center mb-6 sm:mb-8">
             <p className="text-gold-400 text-xs font-display tracking-widest uppercase mb-2">Your Story Matters</p>
-            <h2 className="font-display text-gold-200 text-xl">Share Your Testimony</h2>
+            <h2 className="font-display text-gold-200 text-xl sm:text-2xl">Share Your Testimony</h2>
           </div>
           {submitted ? (
-            <div className="card-navy rounded-sm p-8 text-center">
+            <div className="card-navy rounded-sm p-6 sm:p-8 text-center">
               <div className="text-4xl mb-4">🙌</div>
-              <p className="font-display text-gold-300 mb-2">Thank You!</p>
-              <p className="text-gold-200/50 text-sm">Your testimony glorifies God and encourages others. We'll review and share it shortly.</p>
+              <p className="font-display text-gold-300 mb-2 text-base sm:text-lg">Thank You!</p>
+              <p className="text-gold-200/50 text-xs sm:text-sm leading-relaxed">
+                Your testimony glorifies God and encourages others. We'll review and share it shortly.
+              </p>
             </div>
           ) : (
-            <form onSubmit={e => { e.preventDefault(); setSubmitted(true); }} className="card-navy rounded-sm p-6 space-y-4">
+            <form onSubmit={e => { e.preventDefault(); setSubmitted(true); }} className="card-navy rounded-sm p-5 sm:p-7 space-y-4">
               <div>
                 <label className="block text-gold-300/60 text-xs font-display tracking-widest uppercase mb-2">Your Name</label>
                 <input value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Blessing O." className="w-full bg-navy-950 border border-gold-700/30 rounded-sm px-4 py-3 text-gold-200 text-sm placeholder-gold-200/20 focus:outline-none focus:border-gold-500/60 transition-colors" />
@@ -149,7 +151,7 @@ export default function Testimonies() {
                 <label className="block text-gold-300/60 text-xs font-display tracking-widest uppercase mb-2">Your Testimony</label>
                 <textarea required value={text} onChange={e => setText(e.target.value)} rows={5} placeholder="Tell us what God has done..." className="w-full bg-navy-950 border border-gold-700/30 rounded-sm px-4 py-3 text-gold-200 text-sm placeholder-gold-200/20 focus:outline-none focus:border-gold-500/60 transition-colors resize-none" />
               </div>
-              <button type="submit" className="btn-gold w-full py-3.5 rounded-sm text-sm">Submit Testimony</button>
+              <button type="submit" className="btn-gold w-full py-3.5 rounded-sm text-xs sm:text-sm">Submit Testimony</button>
             </form>
           )}
         </div>
