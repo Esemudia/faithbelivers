@@ -4,6 +4,7 @@ import worshipImg from '../assets/worship-prayer-ministry.jpg';
 import cathedralImg from '../assets/church-cathedral-exterior.jpg';
 import interiorsStrip from '../assets/church-interiors-strip.jpg';
 import ImageModal from '../components/ImageModal';
+import VideoSection from '../components/VideoSection';
 
 const ministries = [
   {
@@ -135,6 +136,14 @@ export default function Ministries() {
           ))}
         </div>
       </section>
+
+      {/* Ministries in Action Video Gallery */}
+      <VideoSection
+        title="Ministries in Action"
+        subtitle="Watch our worship team, choir, intercessory army, and church family in real, vibrant motion."
+        limit={6}
+        showCategories={true}
+      />
 
       {/* Join CTA */}
       <section className="bg-navy-900 py-12 sm:py-16 px-4 text-center border-t border-gold-800/30">

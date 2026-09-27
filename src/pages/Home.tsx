@@ -9,6 +9,7 @@ import altarImg from '../assets/worship-prayer-ministry.jpg';
 import scheduleFlyer from '../assets/church-programs-schedule.jpg';
 import pastorFlyer from '../assets/pastor-worship-flyer.jpg';
 import ImageModal from '../components/ImageModal';
+import VideoSection from '../components/VideoSection';
 
 const weeklySchedule = [
   {
@@ -371,6 +372,13 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Real Church Video Highlights */}
+      <VideoSection
+        limit={8}
+        title="Moments of Glory in Motion"
+        subtitle="Watch authentic live recordings from our services: vibrant praise, deep intercession, live choir ministry, and warm fellowship."
+      />
 
       {/* Special Programs & Flyers Showcase */}
       <section className="bg-navy-900 py-12 sm:py-16 px-4 sm:px-6 border-y border-gold-800/30">

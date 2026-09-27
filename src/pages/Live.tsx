@@ -4,6 +4,7 @@ import worshipImg from '../assets/worship-prayer-ministry.jpg';
 import cathedralImg from '../assets/church-cathedral-exterior.jpg';
 import scheduleFlyer from '../assets/church-programs-schedule.jpg';
 import ImageModal from '../components/ImageModal';
+import VideoSection from '../components/VideoSection';
 
 const broadcasts = [
   {
@@ -172,6 +173,12 @@ export default function Live() {
           </div>
         </div>
       </section>
+
+      {/* Video On-Demand & Service Highlights */}
+      <VideoSection
+        title="Service Video Highlights & On-Demand Clips"
+        subtitle="Watch recorded moments from our services: deep worship, high praise, choir ministration, and altar prayers."
+      />
 
       {/* Lightbox / Image Modal */}
       {modalImage && (

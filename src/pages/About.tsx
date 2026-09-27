@@ -8,6 +8,7 @@ import structureImg from '../assets/church-building-structure.jpg';
 import interiorsStrip from '../assets/church-interiors-strip.jpg';
 import pastorFlyer from '../assets/pastor-worship-flyer.jpg';
 import ImageModal from '../components/ImageModal';
+import VideoSection from '../components/VideoSection';
 
 const coreValues = [
   { icon: '✝', label: 'Faith & The Word', desc: 'Anchored completely in the undiluted, infallible Word of God.' },
@@ -333,6 +334,14 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* Real Church Life & Worship Video Section */}
+      <VideoSection
+        limit={6}
+        title="Experience Church Life in Motion"
+        subtitle="Watch authentic moments of praise, prayer, joyful worship, and warm fellowship at Faith Believers Ministry."
+        showCategories={true}
+      />
 
       {/* Lightbox / Image Modal */}
       {modalImage && (

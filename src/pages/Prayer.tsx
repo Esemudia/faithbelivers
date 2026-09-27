@@ -2,6 +2,7 @@ import { useState } from 'react';
 import worshipImg from '../assets/worship-prayer-ministry.jpg';
 import scheduleFlyer from '../assets/church-programs-schedule.jpg';
 import ImageModal from '../components/ImageModal';
+import VideoSection from '../components/VideoSection';
 
 const prayerTimes = [
   {
@@ -234,6 +235,15 @@ export default function Prayer() {
           </div>
         </div>
       </section>
+
+      {/* Altar Intercession & Deliverance Videos */}
+      <VideoSection
+        title="Altar Deliverance & Intercession in Action"
+        subtitle="Watch the Holy Spirit at work through fervent prayer, laying on of hands, and deliverance ministration."
+        categoryFilter="Deliverance"
+        showCategories={false}
+        limit={3}
+      />
 
       {/* Modal for Altar Photo */}
       {modalOpen && (

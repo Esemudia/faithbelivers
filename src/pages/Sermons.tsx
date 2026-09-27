@@ -6,6 +6,7 @@ import pastorFlyer from '../assets/pastor-worship-flyer.jpg';
 import scheduleFlyer from '../assets/church-programs-schedule.jpg';
 import interiorsStrip from '../assets/church-interiors-strip.jpg';
 import ImageModal from '../components/ImageModal';
+import VideoSection from '../components/VideoSection';
 
 const sermons = [
   {
@@ -170,6 +171,14 @@ export default function Sermons() {
           ))}
         </div>
       </section>
+
+      {/* Pulpit Ministry & Live Exhortation Videos */}
+      <VideoSection
+        title="Pulpit Exhortations & Ministry Moments"
+        subtitle="Watch live excerpts of preaching, spiritual declarations, and worship ministration from our services."
+        limit={4}
+        showCategories={true}
+      />
 
       {/* Lightbox / Image Modal */}
       {modalImage && (
