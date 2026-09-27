@@ -153,6 +153,40 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-1px);
 }
 
+.btn-navy {
+  background: linear-gradient(135deg, #080e2e, #162060);
+  color: #f8edca;
+  border: 1px solid rgba(212, 162, 23, 0.4);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+}
+
+.btn-navy:hover {
+  background: linear-gradient(135deg, #0f1540, #1b2878);
+  border-color: #d4a217;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(8, 14, 46, 0.4);
+}
+
+.btn-outline-navy {
+  border: 1.5px solid #162060;
+  color: #162060;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.btn-outline-navy:hover {
+  background: #162060;
+  color: #f8edca;
+  transform: translateY(-1px);
+}
+
 /* Mobile responsive helpers & touch optimization */
 @media screen and (max-width: 768px) {
   /* Prevent iOS Safari unwanted auto-zoom on input tap */

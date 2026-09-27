@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router';
-import logoImg from '../assets/logo1.png';
+import logoImg from '../assets/church-logo.png';
 
 const links = [
   { to: '/about', label: 'About' },
