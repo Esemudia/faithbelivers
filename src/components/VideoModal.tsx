@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface VideoModalProps {
   isOpen: boolean;
@@ -20,9 +20,14 @@ export default function VideoModal({
   desc,
 }: VideoModalProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     if (!isOpen) return;
+
+    setHasError(false);
+    setIsPlaying(false);
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -31,24 +36,44 @@ export default function VideoModal({
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
 
-    // Auto play when modal opens
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => {
-        // Autoplay may be blocked by browser policy until user interacts
-      });
+    // Auto play when modal opens, handling browser autoplay restrictions gracefully
+    const video = videoRef.current;
+    if (video) {
+      video.currentTime = 0;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch(() => {
+            // Autoplay blocked by browser policy without user gesture; show play overlay
+            setIsPlaying(false);
+          });
+      }
     }
 
     return () => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
-      if (videoRef.current) {
-        videoRef.current.pause();
+      if (video) {
+        video.pause();
       }
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, videoSrc]);
 
   if (!isOpen) return null;
+
+  const handleManualPlay = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
 
   return (
     <div
@@ -85,18 +110,60 @@ export default function VideoModal({
           </button>
         </div>
 
-        {/* Video Player */}
-        <div className="relative flex-1 bg-black flex items-center justify-center overflow-hidden max-h-[70vh]">
-          <video
-            ref={videoRef}
-            src={videoSrc}
-            poster={poster}
-            controls
-            playsInline
-            className="w-full max-h-[70vh] object-contain shadow-2xl"
-          >
-            Your browser does not support the video tag.
-          </video>
+        {/* Video Player Area */}
+        <div className="relative flex-1 bg-black flex items-center justify-center overflow-hidden max-h-[70vh] group">
+          {hasError ? (
+            <div className="p-8 text-center text-gold-200 max-w-md mx-auto">
+              <span className="text-3xl mb-3 block">⚠️</span>
+              <h4 className="font-display text-sm font-semibold mb-1 text-gold-300">Video Playback Notice</h4>
+              <p className="text-xs text-gold-200/70 mb-4">
+                Unable to load this video clip. Please check your internet connection and try reloading.
+              </p>
+              <button
+                onClick={() => {
+                  setHasError(false);
+                  if (videoRef.current) {
+                    videoRef.current.load();
+                    videoRef.current.play().catch(() => {});
+                  }
+                }}
+                className="btn-gold py-2 px-4 text-xs rounded-sm"
+              >
+                Retry Playback
+              </button>
+            </div>
+          ) : (
+            <>
+              <video
+                ref={videoRef}
+                poster={poster}
+                controls
+                playsInline
+                preload="auto"
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                onError={() => setHasError(true)}
+                className="w-full max-h-[70vh] object-contain shadow-2xl"
+              >
+                <source src={videoSrc} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+
+              {/* Large Play Overlay if paused or autoplay was prevented */}
+              {!isPlaying && (
+                <div
+                  onClick={handleManualPlay}
+                  className="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer transition-opacity"
+                >
+                  <div className="w-16 sm:w-20 h-16 sm:h-20 rounded-full border-2 border-gold-400 bg-navy-950/90 text-gold-400 flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+                    <svg className="w-8 sm:w-10 h-8 sm:h-10 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
         </div>
 
         {/* Description / Caption Footer */}

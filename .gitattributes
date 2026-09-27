@@ -13,13 +13,13 @@
 # ---------------------------------------------------------------------------
 # Video
 # ---------------------------------------------------------------------------
-*.mp4                filter=lfs diff=lfs merge=lfs -text
+# Web videos (*.mp4, *.webm) are stored directly in Git for web hosting (e.g. Vercel)
+# Only heavy raw production formats remain in LFS if needed
 *.mov                filter=lfs diff=lfs merge=lfs -text
 *.avi                filter=lfs diff=lfs merge=lfs -text
 *.mkv                filter=lfs diff=lfs merge=lfs -text
 *.wmv                filter=lfs diff=lfs merge=lfs -text
 *.flv                filter=lfs diff=lfs merge=lfs -text
-*.webm               filter=lfs diff=lfs merge=lfs -text
 *.m4v                filter=lfs diff=lfs merge=lfs -text
 *.mpg                filter=lfs diff=lfs merge=lfs -text
 *.mpeg               filter=lfs diff=lfs merge=lfs -text
